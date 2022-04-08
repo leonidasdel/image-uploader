@@ -3,6 +3,7 @@
     color: v.$primary-gray-2;
     font-family: v.$font-family, sans-serif ;
     font-weight: v.$font-weight;
+    font-style: normal;
     margin: 0;
     padding: 0;
 }
@@ -15,4 +16,9 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+}
+
+//hides ugly button for uploading files
+input[type="file"] {
+  display: none;
 }

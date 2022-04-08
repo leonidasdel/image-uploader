@@ -1,7 +1,65 @@
+@use '../../variables' as v;
 .container{
     width: 402px;
     height: 469px;
     border-radius: 12px;
     background-color: white;
     box-shadow: 0px 4px 12px 0px #0000001A;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 36px 32px;
+    &_header {
+        color: v.$primary-gray-2;
+        font-size: v.$font-size;
+        letter-spacing: v.$letter-spacing;
+        &_sub{
+            color: v.$primary-gray-3;
+            font-size: v.$font-size-small;
+            margin-top: 16px;
+            letter-spacing: v.$letter-spacing;
+        }
+    }
+    &_dropzone{
+        width: 100%;
+        height: 240px;
+        margin-top: 45px;
+        background: #F6F8FB;
+        border: 1px dashed #97BEF4;
+        box-sizing: border-box;
+        border-radius: 12px;
+        position: relative;
+        &_image{
+            position: absolute;
+            top:22%; left: 50%; transform: translate(-50%,-22%);
+        }
+        &_text{
+            font-size: v.$font-size-medium;
+            color: v.$primary-gray-4;
+            position: absolute;
+            top: 80%; left: 50%; transform: translate(-50%,-80%);
+            letter-spacing: v.$letter-spacing;
+        }
+    }
+
+    &_sub_text{
+        font-size: v.$font-size-medium;
+        color: v.$primary-gray-4;
+        letter-spacing: v.$letter-spacing;
+        margin-top: 25px;
+    }
+
+    &_upload{
+        margin-top: 30px;
+        &_button {
+            font-size: v.$font-size-medium;
+            color:white;
+            letter-spacing: v.$letter-spacing;
+            padding: 8px 16px;
+            background-color: v.$secondary-blue-1;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    }
 }
