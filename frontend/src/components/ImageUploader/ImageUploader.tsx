@@ -50,7 +50,8 @@ const ImageUploader = ({ fileTypes, fileTypesCaption, fileDropZoneCaption }: fil
         <div className='container'>
             <h1 className='container_header'>Upload your file</h1>
             <h2 className='container_header_sub'>{fileTypesCaption}</h2>
-            <div style={{border: highlight ? 'none' : '', outline: highlight ? '4px solid  #2F80ED' : 'none'} } className="container_dropzone"
+            <div style={{border: highlight ? 'none' : '', outline: highlight ? '4px solid  #2F80ED' : 'none'} } 
+                className="container_dropzone"
                 onDragEnter={(e) => handleEnter(e)}
                 onDragLeave={(e) => handleLeave(e)}
                 onDragOver={(e) => handleOver(e)}
