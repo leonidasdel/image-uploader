@@ -10,24 +10,52 @@ interface fileProps {
 
 const ImageUploader = ({ fileTypes, fileTypesCaption, fileDropZoneCaption }: fileProps) => {
 
-    function dragOver(ev: any) {
+    const [highlight, setHighlight] = useState(false);
 
-        ev.preventDefault();
+    const handleEnter = (e:any) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("enter!");
+        setHighlight(true);
+    };
 
+    const handleOver = (e:any) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("over!");
+        setHighlight(true);
+    };
 
-    }
+    const handleLeave = (e:any) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("leave!");
+        setHighlight(false);
+    };
 
+    const handleUpload = (e:any) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("drop!");
+        // setHighlight(false);
+        // setDrop(true);
 
-    function dragEnter(ev: any) {
+        //const [file] = e.target.files || e.dataTransfer.files;
 
+        // uploadFile(file);
+    };
 
-    }
 
     return (
         <div className='container'>
             <h1 className='container_header'>Upload your file</h1>
             <h2 className='container_header_sub'>{fileTypesCaption}</h2>
-            <div className="container_dropzone" onDragOver={dragOver} onDragEnter={dragEnter}  >
+            <div style={{border: highlight ? 'none' : '', outline: highlight ? '4px solid  #2F80ED' : 'none'} } className="container_dropzone"
+                onDragEnter={(e) => handleEnter(e)}
+                onDragLeave={(e) => handleLeave(e)}
+                onDragOver={(e) => handleOver(e)}
+                onDrop={(e) => handleUpload(e)}
+            >
                 <img className="container_dropzone_image" draggable="false" src={dropzone_image} />
                 <h2 className='container_dropzone_text'>{fileDropZoneCaption}</h2>
             </div>
