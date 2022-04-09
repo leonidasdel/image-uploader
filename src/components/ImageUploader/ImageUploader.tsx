@@ -11,6 +11,7 @@ interface fileProps {
 const ImageUploader = ({ fileTypes, fileTypesCaption, fileDropZoneCaption }: fileProps) => {
 
     const [highlight, setHighlight] = useState(false);
+    const [imageDropped,setImageDropped] = useState(false);
 
     const handleEnter = (e:any) => {
         e.preventDefault();
@@ -37,11 +38,11 @@ const ImageUploader = ({ fileTypes, fileTypesCaption, fileDropZoneCaption }: fil
         e.preventDefault();
         e.stopPropagation();
         console.log("drop!");
-        // setHighlight(false);
-        // setDrop(true);
+        setHighlight(false);
+        setImageDropped(true);
 
-        //const [file] = e.target.files || e.dataTransfer.files;
-
+        const [file] = e.target.files || e.dataTransfer.files;
+        console.log(file)
         // uploadFile(file);
     };
 
