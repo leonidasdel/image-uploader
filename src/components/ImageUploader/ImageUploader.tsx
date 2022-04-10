@@ -42,7 +42,7 @@ const ImageUploader = ({ fileTypes, fileTypesCaption, fileDropZoneCaption, onIma
 
         const [file] = e.target.files || e.dataTransfer.files;
         console.log(file)
-        onImageUpload(file[0])
+        onImageUpload(file)
     };
 
 
