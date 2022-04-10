@@ -1,11 +1,11 @@
 import React from 'react';
-import ImageUploader from './components/ImageUploader/ImageUploader';
+import HomePage from './pages/HomePage/Homepage';
 
 
-function App() {
+const App = () => {
     return (
         <div className="App">
-          <ImageUploader fileTypes="image/*" fileTypesCaption='Your file must be an image...' fileDropZoneCaption="Drag and drop your image here" />
+          <HomePage/>
         </div>
     );
 }
