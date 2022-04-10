@@ -38,3 +38,6 @@ yarn-error.log*
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
+
+#env files
+.env.*
