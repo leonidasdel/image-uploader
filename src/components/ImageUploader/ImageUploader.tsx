@@ -6,12 +6,12 @@ interface fileProps {
     fileTypes: string;
     fileTypesCaption: string;
     fileDropZoneCaption: string;
+    onImageUpload: (image: any) => void;
 }
 
-const ImageUploader = ({ fileTypes, fileTypesCaption, fileDropZoneCaption }: fileProps) => {
+const ImageUploader = ({ fileTypes, fileTypesCaption, fileDropZoneCaption, onImageUpload }: fileProps) => {
 
     const [highlight, setHighlight] = useState(false);
-    const [imageDropped,setImageDropped] = useState(false);
 
     const handleEnter = (e:any) => {
         e.preventDefault();
@@ -39,11 +39,10 @@ const ImageUploader = ({ fileTypes, fileTypesCaption, fileDropZoneCaption }: fil
         e.stopPropagation();
         console.log("drop!");
         setHighlight(false);
-        setImageDropped(true);
 
         const [file] = e.target.files || e.dataTransfer.files;
         console.log(file)
-        // uploadFile(file);
+        onImageUpload(file[0])
     };
 
 
