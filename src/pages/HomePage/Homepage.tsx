@@ -6,10 +6,12 @@ import { uploadImage } from '../../services/upload';
 const HomePage = () => {
     const [isImageUploading, setIsImageUploading] = useState(false)
     const [isImageUploaded, setIsImageUploaded] = useState(false)
-    const [fileLink, setFilelink] = useState(null)
+    const [imagePreview,setImagePreview] = useState('')
+    const [fileLink, setFilelink] = useState('')
 
     const handleUpload = async (image: any) => {
         setIsImageUploading(true)
+        setImagePreview(URL.createObjectURL(image))
         const payload = new FormData()
         payload.append('file', image);
         const uploadedImage = await uploadImage(payload)
@@ -24,7 +26,7 @@ const HomePage = () => {
     return (
         isImageUploading 
         ? <Loading title='Uploading...' /> 
-        : <ImageUploader isImageUploaded={isImageUploaded} onImageUpload={(image) => handleUpload(image)} fileTypes="image/*" fileTypesHeader='Upload your image' fileTypesCaption='Your file must be an image...' fileDropZoneCaption="Drag and drop your image here" fileLink={fileLink} />
+        : <ImageUploader isImageUploaded={isImageUploaded} imagePreview={imagePreview} onImageUpload={(image) => handleUpload(image)} fileTypes="image/*" fileTypesHeader='Upload your image' fileTypesCaption='Your file must be an image...' fileDropZoneCaption="Drag and drop your image here" fileLink={fileLink} />
     )
 }
 
