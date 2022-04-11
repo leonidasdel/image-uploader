@@ -8,11 +8,12 @@ interface fileProps {
     fileTypesHeader: string;
     fileTypesCaption: string;
     fileDropZoneCaption: string;
+    fileLink: string | null;
     isImageUploaded: boolean;
     onImageUpload: (image: any) => void;
 }
 
-const ImageUploader = ({ fileTypes,fileTypesHeader, fileTypesCaption, fileDropZoneCaption, isImageUploaded, onImageUpload }: fileProps) => {
+const ImageUploader = ({ fileTypes,fileTypesHeader, fileTypesCaption, fileDropZoneCaption, fileLink, isImageUploaded, onImageUpload }: fileProps) => {
 
     const [highlight, setHighlight] = useState(false);
 
@@ -62,15 +63,16 @@ const ImageUploader = ({ fileTypes,fileTypesHeader, fileTypesCaption, fileDropZo
             onDragOver={(e) => handleOver(e)}
             onDrop={(e) => handleUpload(e)}
         >
-            <img className="container_dropzone_image" draggable="false" src={isImageUploaded ? tick_box_green : dropzone_image} />
+            <img className={`container_dropzone_image ${isImageUploaded ? 'size-helper' : null}`} draggable="false" src={isImageUploaded ? tick_box_green : dropzone_image} />
             {isImageUploaded ? null : <h2 className='container_dropzone_text'>{fileDropZoneCaption}</h2> }
         </div>
-        <h6 className='container_sub_text'>Or</h6>
-        <div className='container_upload'>
-            <label htmlFor='container_upload_input' className='container_upload_button'>
-                Choose a file
+        {isImageUploaded ? null : <h6 className='container_sub_text'>Or</h6> }
+        <div className={`container_upload ${isImageUploaded ? 'border-helper' : null}`}>
+            {isImageUploaded ? <h3 className='container_upload_link'>{fileLink}</h3> : null}
+            <label htmlFor={ isImageUploaded ? 'container_upload_copy' : 'container_upload_input'} className={`container_upload_button ${isImageUploaded ? 'position-helper' : null}`}>
+                {isImageUploaded ? 'Copy Link' : 'Choose a file'}
             </label>
-            <input id='container_upload_input' className='container_upload_input' type="file" />
+            <input id={ isImageUploaded ? 'container_upload_copy' : 'container_upload_input'} className='container_upload_input' type={`${isImageUploaded ? 'input' : 'file'}`} />
         </div>
     </div>
     );

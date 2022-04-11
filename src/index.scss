@@ -18,7 +18,10 @@ body {
     min-height: 100vh;
 }
 
-//hides ugly button for uploading files
+//hides ugly button for uploading files and copying links
 input[type="file"] {
   display: none;
 }
+input[type="input"] {
+    display: none;
+  }
