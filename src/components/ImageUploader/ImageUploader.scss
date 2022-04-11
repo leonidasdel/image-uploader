@@ -14,6 +14,7 @@
         color: v.$primary-gray-2;
         font-size: v.$font-size;
         letter-spacing: v.$letter-spacing;
+        margin-top: 11px;
         &_sub{
             color: v.$primary-gray-3;
             font-size: v.$font-size-small;
@@ -32,6 +33,7 @@
         position: relative;
         &_image{
             position: absolute;
+            width: 100%;
             top:22%; left: 50%; transform: translate(-50%,-22%);
         }
         &_text{
@@ -61,5 +63,10 @@
             border-radius: 8px;
             cursor: pointer;
         }
+    }
+
+    &_success_image {
+        width: 42px;
+        height: 42px;
     }
 }

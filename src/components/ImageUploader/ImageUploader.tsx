@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './ImageUploader.scss'
 import dropzone_image from '../../assets/images/file_dropzone.svg'
-import Loading from '../Loading/Loading';
+import tick_box_green from '../../assets/images/tick_box_green.png';
 
 interface fileProps {
     fileTypes: string;
+    fileTypesHeader: string;
     fileTypesCaption: string;
     fileDropZoneCaption: string;
-    step: number;
+    isImageUploaded: boolean;
     onImageUpload: (image: any) => void;
 }
 
-const ImageUploader = ({ fileTypes, fileTypesCaption, fileDropZoneCaption, step, onImageUpload }: fileProps) => {
+const ImageUploader = ({ fileTypes,fileTypesHeader, fileTypesCaption, fileDropZoneCaption, isImageUploaded, onImageUpload }: fileProps) => {
 
     const [highlight, setHighlight] = useState(false);
 
@@ -47,38 +48,31 @@ const ImageUploader = ({ fileTypes, fileTypesCaption, fileDropZoneCaption, step,
         onImageUpload(file)
     };
 
-    const renderComponent = () => {
-        switch(step) {
-            case 2: return <Loading title='Uploading...' /> 
-            case 3:    
-            default: return (   <div className='container'>
-                                    <h1 className='container_header'>Upload your file</h1>
-                                    <h2 className='container_header_sub'>{fileTypesCaption}</h2>
-                                    <div style={{border: highlight ? 'none' : '', outline: highlight ? '4px solid  #2F80ED' : 'none'} } 
-                                        className="container_dropzone"
-                                        onDragEnter={(e) => handleEnter(e)}
-                                        onDragLeave={(e) => handleLeave(e)}
-                                        onDragOver={(e) => handleOver(e)}
-                                        onDrop={(e) => handleUpload(e)}
-                                    >
-                                        <img className="container_dropzone_image" draggable="false" src={dropzone_image} />
-                                        <h2 className='container_dropzone_text'>{fileDropZoneCaption}</h2>
-                                    </div>
-                                    <h6 className='container_sub_text'>Or</h6>
-                                    <div className='container_upload'>
-                                        <label htmlFor='container_upload_input' className='container_upload_button'>
-                                            Choose a file
-                                        </label>
-                                        <input id='container_upload_input' className='container_upload_input' type="file" />
-                                    </div>
-                                </div>
-                            )
-        }
-    }
 
 
     return (
-       renderComponent()
+        <div className='container'>
+        {isImageUploaded ? <img className="container_success_image" draggable="false" src={tick_box_green} /> : null}
+        <h1 className='container_header'>{isImageUploaded ? 'Uploaded Successfully!' : fileTypesHeader}</h1>
+        {isImageUploaded ? null : <h2 className='container_header_sub'>{fileTypesCaption}</h2>}
+        <div style={{border: highlight || isImageUploaded ? 'none' : '', outline: highlight && !isImageUploaded ? '4px solid  #2F80ED' : 'none'} } 
+            className="container_dropzone"
+            onDragEnter={(e) => handleEnter(e)}
+            onDragLeave={(e) => handleLeave(e)}
+            onDragOver={(e) => handleOver(e)}
+            onDrop={(e) => handleUpload(e)}
+        >
+            <img className="container_dropzone_image" draggable="false" src={isImageUploaded ? tick_box_green : dropzone_image} />
+            {isImageUploaded ? null : <h2 className='container_dropzone_text'>{fileDropZoneCaption}</h2> }
+        </div>
+        <h6 className='container_sub_text'>Or</h6>
+        <div className='container_upload'>
+            <label htmlFor='container_upload_input' className='container_upload_button'>
+                Choose a file
+            </label>
+            <input id='container_upload_input' className='container_upload_input' type="file" />
+        </div>
+    </div>
     );
 }
 
