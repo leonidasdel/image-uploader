@@ -76,7 +76,7 @@ const ImageUploader = ({ fileTypes,fileTypesHeader, fileTypesCaption, fileDropZo
             <label onClick={() =>  isImageUploaded ? navigator.clipboard.writeText(fileLink) : null} htmlFor={ isImageUploaded ? 'container_upload_copy' : 'container_upload_input'} className={`container_upload_button ${isImageUploaded ? 'position-helper' : null}`}>
                 {isImageUploaded ? 'Copy Link' : 'Choose a file'}
             </label>
-            <input id={ isImageUploaded ? 'container_upload_copy' : 'container_upload_input'} className='container_upload_input' type={`${isImageUploaded ? 'input' : 'file'}`} />
+            <input id={ isImageUploaded ? 'container_upload_copy' : 'container_upload_input' } onChange={(e) =>  !isImageUploaded && handleUpload(e)} className='container_upload_input' type={`${isImageUploaded ? 'input' : 'file'}`} />
         </div>
     </div>
     );
