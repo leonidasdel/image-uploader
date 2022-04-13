@@ -24,38 +24,45 @@ const ImageUploader = ({ fileTypes,fileTypesHeader, fileTypesCaption, fileDropZo
     const handleEnter = (e:any) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log("enter!");
         setHighlight(true);
     };
 
     const handleOver = (e:any) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log("over!");
         setHighlight(true);
     };
 
     const handleLeave = (e:any) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log("leave!");
         setHighlight(false);
     };
 
     const handleUpload = (e:any) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log("drop!");
         setHighlight(false);
 
         const [file] = e.target.files || e.dataTransfer.files;
 
-        console.log(file)
         // file.type.split('/').pop() gets the value of a string after last slash 
         if(fileTypes.includes(file.type.split('/').pop())) return onImageUpload(file)
+
         alert(`Your file must be in one of these types: ${fileTypes}`)
     };
 
+    const handleCopyLink = (e:any) => {
+        navigator.clipboard.writeText(fileLink)
+        
+        e.target.classList.remove("pulse-button-helper")
+        e.target.classList.add("pulse-button-helper")
+        setTimeout(() => {
+            e.target.classList.remove("pulse-button-helper")
+        }, 600);
+
+
+    }
 
 
     return (
@@ -76,7 +83,7 @@ const ImageUploader = ({ fileTypes,fileTypesHeader, fileTypesCaption, fileDropZo
         {isImageUploaded ? null : <h6 className='container_sub_text'>Or</h6> }
         <div className={`container_upload ${isImageUploaded ? 'border-helper' : null}`}>
             {isImageUploaded ? <h3 className='container_upload_link'>{ substringItem(fileLink, 0, 45, '...') }</h3> : null}
-            <label onClick={() =>  isImageUploaded ? navigator.clipboard.writeText(fileLink) : null} htmlFor={ isImageUploaded ? 'container_upload_copy' : 'container_upload_input'} className={`container_upload_button ${isImageUploaded ? 'position-helper' : null}`}>
+            <label onClick={(e) =>  isImageUploaded ? handleCopyLink(e) : null} htmlFor={ isImageUploaded ? 'container_upload_copy' : 'container_upload_input'} className={`container_upload_button ${isImageUploaded ? 'position-helper' : null}`}>
                 {isImageUploaded ? 'Copy Link' : 'Choose a file'}
             </label>
             <input accept={isImageUploaded ? undefined : fileTypes } id={ isImageUploaded ? 'container_upload_copy' : 'container_upload_input' } onChange={(e) =>  !isImageUploaded && handleUpload(e)} className='container_upload_input' type={`${isImageUploaded ? 'input' : 'file'}`} />
