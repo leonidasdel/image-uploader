@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Footer from '../../components/Footer/Footer';
 import ImageUploader from '../../components/ImageUploader/ImageUploader';
 import Loading from '../../components/Loading/Loading';
 import { uploadImage } from '../../services/upload';
@@ -24,9 +25,12 @@ const HomePage = () => {
     };
 
     return (
-        isImageUploading 
+        <>
+        {isImageUploading 
         ? <Loading title='Uploading...' /> 
-        : <ImageUploader isImageUploaded={isImageUploaded} imagePreview={imagePreview} onImageUpload={(image) => handleUpload(image)} fileTypes="image/*" fileTypesHeader='Upload your image' fileTypesCaption='Your file must be an image...' fileDropZoneCaption="Drag and drop your image here" fileLink={fileLink} />
+        : <ImageUploader isImageUploaded={isImageUploaded} imagePreview={imagePreview} onImageUpload={(image) => handleUpload(image)} fileTypes=".png,.jpg,.jpeg" fileTypesHeader='Upload your image' fileTypesCaption='Your file must be a .png,.jpg,.jpeg...' fileDropZoneCaption="Drag and drop your image here" fileLink={fileLink} />}
+        <Footer createdBy='leonidasdel' link='https://github.com/leonidasdel' challengeFrom='devchallenges.io' />
+        </>
     )
 }
 
