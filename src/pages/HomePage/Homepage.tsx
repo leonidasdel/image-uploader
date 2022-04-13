@@ -26,7 +26,7 @@ const HomePage = () => {
     return (
         isImageUploading 
         ? <Loading title='Uploading...' /> 
-        : <ImageUploader isImageUploaded={isImageUploaded} imagePreview={imagePreview} onImageUpload={(image) => handleUpload(image)} fileTypes="image/*" fileTypesHeader='Upload your image' fileTypesCaption='Your file must be an image...' fileDropZoneCaption="Drag and drop your image here" fileLink={fileLink} />
+        : <ImageUploader isImageUploaded={isImageUploaded} imagePreview={imagePreview} onImageUpload={(image) => handleUpload(image)} fileTypes=".png,.jpg,.jpeg" fileTypesHeader='Upload your image' fileTypesCaption='Your file must be a .png,.jpg,.jpeg...' fileDropZoneCaption="Drag and drop your image here" fileLink={fileLink} />
     )
 }
 

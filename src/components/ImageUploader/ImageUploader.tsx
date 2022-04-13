@@ -49,8 +49,11 @@ const ImageUploader = ({ fileTypes,fileTypesHeader, fileTypesCaption, fileDropZo
         setHighlight(false);
 
         const [file] = e.target.files || e.dataTransfer.files;
+
         console.log(file)
-        onImageUpload(file)
+        // file.type.split('/').pop() gets the value of a string after last slash 
+        if(fileTypes.includes(file.type.split('/').pop())) return onImageUpload(file)
+        alert(`Your file must be in one of these types: ${fileTypes}`)
     };
 
 
@@ -76,7 +79,7 @@ const ImageUploader = ({ fileTypes,fileTypesHeader, fileTypesCaption, fileDropZo
             <label onClick={() =>  isImageUploaded ? navigator.clipboard.writeText(fileLink) : null} htmlFor={ isImageUploaded ? 'container_upload_copy' : 'container_upload_input'} className={`container_upload_button ${isImageUploaded ? 'position-helper' : null}`}>
                 {isImageUploaded ? 'Copy Link' : 'Choose a file'}
             </label>
-            <input id={ isImageUploaded ? 'container_upload_copy' : 'container_upload_input' } onChange={(e) =>  !isImageUploaded && handleUpload(e)} className='container_upload_input' type={`${isImageUploaded ? 'input' : 'file'}`} />
+            <input accept={isImageUploaded ? undefined : fileTypes } id={ isImageUploaded ? 'container_upload_copy' : 'container_upload_input' } onChange={(e) =>  !isImageUploaded && handleUpload(e)} className='container_upload_input' type={`${isImageUploaded ? 'input' : 'file'}`} />
         </div>
     </div>
     );
