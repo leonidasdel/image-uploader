@@ -75,7 +75,7 @@ const ImageUploader = ({ fileTypes,fileTypesHeader, fileTypesCaption, fileDropZo
         </div>
         {isImageUploaded ? null : <h6 className='container_sub_text'>Or</h6> }
         <div className={`container_upload ${isImageUploaded ? 'border-helper' : null}`}>
-            {isImageUploaded ? <h3 className='container_upload_link'>{ substringItem(fileLink, 0, 50, '...') }</h3> : null}
+            {isImageUploaded ? <h3 className='container_upload_link'>{ substringItem(fileLink, 0, 45, '...') }</h3> : null}
             <label onClick={() =>  isImageUploaded ? navigator.clipboard.writeText(fileLink) : null} htmlFor={ isImageUploaded ? 'container_upload_copy' : 'container_upload_input'} className={`container_upload_button ${isImageUploaded ? 'position-helper' : null}`}>
                 {isImageUploaded ? 'Copy Link' : 'Choose a file'}
             </label>
