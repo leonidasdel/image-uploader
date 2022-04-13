@@ -21,7 +21,7 @@ const HomePage = () => {
         setTimeout(()=>{
             setIsImageUploading(false);
             setIsImageUploaded(true);}
-        ,3000)
+        ,1000)
     };
 
     return (
