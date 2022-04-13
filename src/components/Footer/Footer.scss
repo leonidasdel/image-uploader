@@ -1,0 +1,13 @@
+@use '../../variables' as v;
+
+.footer{
+    position: absolute;
+    bottom: 2%; left: 50%; transform: translate(-50%, -2%);
+
+    color: v.$primary-gray-4;
+
+    &_link {
+        color: v.$primary-gray-3;
+        font-weight: v.$font-weight-bold;
+    }
+}
