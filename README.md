@@ -69,10 +69,17 @@ This application/site was created as a submission to a [DevChallenges](https://d
 To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
 ```bash
-# Clone this repository
+# Clone these two repositories
 $ git clone https://github.com/leonidasdel/image-uploader
+$ git clone https://github.com/leonidasdel/image-uploader-backend
 
-# Move to frontend folder and install dependencies
+# Move to image-uploaded folder and install dependencies
+$ npm install
+
+# Run the app
+$ npm start
+
+# Move to image-uploader-backend folder and install dependencies
 $ npm install
 
 # Run the app
