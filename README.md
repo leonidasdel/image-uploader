@@ -56,11 +56,11 @@
 <!-- List the features of your application or follow the template. Don't share the figma file here :) -->
 
 This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx) was to build an application to complete the below given user stories:
-    - User story: I can drag and drop an image to upload it
-    - User story: I can choose to select an image from my folder
-    - User story: I can see a loader when uploading
-    - User story: When the image is uploaded, I can see the image and copy it
-    - User story: I can choose to copy to the clipboard
+- User story: I can drag and drop an image to upload it
+- User story: I can choose to select an image from my folder
+- User story: I can see a loader when uploading
+- User story: When the image is uploaded, I can see the image and copy it
+- User story: I can choose to copy to the clipboard
 
 ## How To Use
 
