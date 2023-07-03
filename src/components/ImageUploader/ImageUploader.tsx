@@ -19,6 +19,7 @@ interface fileProps {
 
 const ImageUploader = ({ fileTypes,fileTypesHeader, fileTypesCaption, fileDropZoneCaption, fileLink, isImageUploaded, imagePreview, onImageUpload }: fileProps) => {
 
+    const [copyLinkText, setCopyLinkText] = useState('Copy Link')
     const [highlight, setHighlight] = useState(false);
 
     const handleEnter = (e:any) => {
@@ -57,9 +58,11 @@ const ImageUploader = ({ fileTypes,fileTypesHeader, fileTypesCaption, fileDropZo
         
         e.target.classList.remove("pulse-button-helper")
         e.target.classList.add("pulse-button-helper")
+        setCopyLinkText('Copied!')
         setTimeout(() => {
             e.target.classList.remove("pulse-button-helper")
-        }, 600);
+            setCopyLinkText('Copy Link')
+        }, 1000);
 
 
     }
@@ -84,7 +87,7 @@ const ImageUploader = ({ fileTypes,fileTypesHeader, fileTypesCaption, fileDropZo
         <div className={`container_upload ${isImageUploaded ? 'border-helper' : null}`}>
             {isImageUploaded ? <h3 className='container_upload_link'>{ substringItem(fileLink, 0, 45, '...') }</h3> : null}
             <label onClick={(e) =>  isImageUploaded ? handleCopyLink(e) : null} htmlFor={ isImageUploaded ? 'container_upload_copy' : 'container_upload_input'} className={`container_upload_button ${isImageUploaded ? 'position-helper' : null}`}>
-                {isImageUploaded ? 'Copy Link' : 'Choose a file'}
+                {isImageUploaded ? copyLinkText : 'Choose a file'}
             </label>
             <input accept={isImageUploaded ? undefined : fileTypes } id={ isImageUploaded ? 'container_upload_copy' : 'container_upload_input' } onChange={(e) =>  !isImageUploaded && handleUpload(e)} className='container_upload_input' type={`${isImageUploaded ? 'input' : 'file'}`} />
         </div>
